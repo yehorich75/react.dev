@@ -70,11 +70,18 @@
       
       const doc = document.getElementById('document');
       class Task extends React.Component {
-        edit() {
-          alert ("Edit Button Push");
+        constructor(props) {
+          super(props);
+          this.state = {edit: false};
         }
-        delete() {
-          alert ("Delete Button Push");
+        edit = () => {
+          this.setState ({edit: true});
+        }
+        remove = () => {
+          alert ("Delete Button Pushed");
+        }
+        save = () => {
+          this.setState ({edit: false});
         }
         render() {
           return (
