@@ -73,6 +73,7 @@
         constructor(props) {
           super(props);
           this.state = {edit: false};
+          this.focusTextInput = this.focusTextInput.bind(this);
         }
         edit = () => {
           this.setState ({edit: true});
@@ -81,6 +82,8 @@
           alert ("Delete Button Pushed");
         }
         save = () => {
+          var value = this.textInput.value;
+          alert (value);
           this.setState ({edit: false});
         }
         rendNorm = () => {
@@ -92,10 +95,13 @@
             </div>
           )
         }
+        focusTextInput() {
+          this.textInput.focus();
+        }
         rendEdit = () => {
           return (
             <div className="box">
-              <textarea defaultValue={this.props.children}></textarea>
+              <textarea ref={(textarea) => { this.textInput = textarea; }} defaultValue={this.props.children} />
               <button onClick={this.save} className="btn success">Save</button>
             </div>
           )
