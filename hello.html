@@ -68,7 +68,7 @@
 
 // ------------- Document -----------------
       
-      const doc = document.getElementById('document');
+
       class Task extends React.Component {
         constructor(props) {
           super(props);
@@ -114,13 +114,33 @@
           }
         }
       };
+      class Field extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            tasks: [
+              'Need milk!',
+              'Clean tooth!',
+              'Just pleasure'
+          ]
+        };
+      };
+      render() {
+        return (
+          <div className="field">
+            {
+              this.state.tasks.map (
+                (item, i) => <Task key={i}>{item}</Task>
+              )
+            }
+          </div>
+        )
+      };
       ReactDOM.render (
-        <div className="field">
-          <Task>Hey, it is me!</Task>
-          <Task>Task number 2</Task>
-          <Task>Hello, World!</Task>
-        </div>,
+        <Field />,
          doc);
+
+        const doc = document.getElementById('document');
 
 // ------------- Program -----------------
 
