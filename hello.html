@@ -122,9 +122,9 @@
               'Need milk!',
               'Clean tooth!',
               'Just pleasure'
-          ]
+            ]
+          };
         };
-      };
       render() {
         return (
           <div className="field">
@@ -134,13 +134,17 @@
               )
             }
           </div>
-        )
+          )
+        };
       };
+
+      const doc = document.getElementById('document');
+
       ReactDOM.render (
         <Field />,
          doc);
 
-        const doc = document.getElementById('document');
+      
 
 // ------------- Program -----------------
 
