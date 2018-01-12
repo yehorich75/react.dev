@@ -79,11 +79,11 @@
           this.setState ({edit: true});
         }
         remove = () => {
-          alert ("Delete Button Pushed");
+          this.props.deleteBlock (this.props.index);
         }
         save = () => {
           var value = this.textInput.value;
-          alert (value);
+          this.props.update (this.textInput.value, this.props.index);
           this.setState ({edit: false});
         }
         rendNorm = () => {
@@ -91,7 +91,7 @@
             <div className="box">
               <div className="text">{this.props.children}</div>
               <button onClick={this.edit} className="btn light">Edit</button>
-              <button onClick={this.delete} className="btn red">Delete</button>
+              <button onClick={this.remove} className="btn red">Delete</button>
             </div>
           )
         }
@@ -119,21 +119,31 @@
           super(props);
           this.state = {
             tasks: [
-              'Need milk!',
               'Clean tooth!',
+              'Need milk!',
               'Just pleasure'
             ]
           };
-        };
-      render() {
-        return (
-          <div className="field">
-            {
-              this.state.tasks.map (
-                (item, i) => <Task key={i}>{item}</Task>
-              )
-            }
-          </div>
+        }
+        deleteBlock = (i) => {
+          var arr = this.state.tasks;
+          arr.splice(i, 1);
+          this.setState ({tasks: arr});
+        }
+        updateText = (text, i) => {
+          var arr = this.state.tasks;
+          arr[i] = text;
+          this.setState ({tasks: arr});
+        }
+        render() {
+          return (
+            <div className="field">
+              {
+                this.state.tasks.map (
+                  (item, i) => <Task key={i} index={i} update={this.updateText} deleteBlock={this.deleteBlock}>{item}</Task>
+                )
+              }
+            </div>
           )
         };
       };
